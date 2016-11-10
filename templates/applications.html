@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+	
+{% block content %}
+	<div class="row">
+		<div class="col-xs-12">
+	  		<h1>
+	  			Solicitudes 
+	  			<button class="btn btn-info" id="newApplication" data-toggle="modal" data-target="#myModal"> 
+	      			<i class="fa fa-plus"></i> Nueva solicitud 
+	      		</button>
+	  		</h1>	
+	  	</div>
+
+		<div class="col-xs-12">
+	        <div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Id.</th>
+							<th>Motivo de la solicitud</th>
+							<th class="text-center">Monto solicitado</th>
+							<th class="text-center">Cuotas Pagadas</th>
+							<th class="text-center">Estado</th>
+							<th class="text-center">Aceptado</th>
+						</tr>
+					</thead>
+				    <tbody>
+				    	{% for application in applications %}
+					        {% block application %}
+					        	<tr>
+					        		<td>{{ application.id }}</td>
+					        		<td> <a href="/application?show={{ application.id }}" title="Ver detalle"> {{ escape(application.name) }} </a> </td>
+					        		<td class="text-center">{{ application.amount }}</td>
+					        		<td class="text-center">{{ application.count_payments }} de {{ application.number_payments }}</td>
+					        		<td class="text-center">{{ application.commercial_state_text }}</td>
+					        		<td class="text-center">{{ application.agree_state }}</td>
+					          	</tr>
+					        {% end %}
+					    {% end %}
+				    </tbody>
+			  	</table>
+			</div>
+		</div>
+
+		<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				    <h4 class="modal-title">Nueva solicitud</h4>
+				  </div>
+				  	<form action="application" method="post" accept-charset="utf-8">
+				      	<div class="modal-body">
+				        	<div class="row">
+								{% module xsrf_form_html() %}
+					        	<div class="col-xs-12">
+						        	<div class="form-group">
+						        		<input class="form-control input-lg" type="text" name="name" id="name" placeholder="Motivo de la solicitud"></input>
+						        	</div>
+						        </div>
+						        <div class="col-xs-6">
+						        	<div class="form-group">
+						        		<input class="form-control input-lg" type="number" name="amount" id="amount" placeholder="Monto solicitado"></input>
+						        	</div>
+						        </div>
+						        <div class="col-xs-6">
+						        	<div class="form-group">
+						        		<input class="form-control input-lg" type="number" name="number_payments" id="number_payments" placeholder="Número de cuotas"></input>
+						        	</div>
+						        </div>
+					        </div>
+				     	</div>
+				      	<div class="modal-footer">
+				        	<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				        	<button type="submit" class="btn btn-primary">Guardar</button>
+				      	</div>
+				  	</form>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</div>
+{% end %}

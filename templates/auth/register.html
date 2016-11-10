@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Login</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- font-awesome icons -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="../static/css/login.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/register.css">
+</head>
+<body class="register">
+	<div class="container">
+	  <div class="row" id="pwd-container">
+	    
+		<div class="col-md-6">
+			<section class="login-form register-form">
+				<form method="post" action="/register" role="login">
+					{% module xsrf_form_html() %}
+					<h1>Teprestamos.com</h1>
+					
+					<div class="row register-company">
+						
+						<div class="col-sm-6">
+							<input type="text" name="doc" class="form-control" id="doc" placeholder="Cédula" required />
+						</div>
+						<div class="col-sm-6">
+							<input type="text" name="name" class="form-control" id="name" placeholder="Nombre" required />
+						</div>
+						<div class="col-sm-6">
+							<input type="email" name="email" placeholder="Email" required class="form-control" />	
+						</div>
+						<div class="col-sm-6">
+							<input type="text" name="tel" id="tel" placeholder="Télefono" required class="form-control" />	
+						</div>
+						<div class="col-sm-12">
+							<select name="city_id" id="city_id" placeholder="Ciudad" required class="form-control">
+								{% for country in countries %}
+									{% for city in country.cities %}
+										<option value="{{ city.id }}">{{ country.name }}  - {{ city.name }}</option>
+									{% end %}
+								{% end %}
+							</select>
+						</div>
+						<div class="col-sm-6">
+							<input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" required />
+						</div>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="password" placeholder="Repita su contraseña" required />
+						</div>
+					</div>
+
+					<div class="row register-company">
+						<div class="col-xs-12">
+							<h2>Empresa</h2>
+						</div>
+						<div class="col-sm-6">
+							<input type="text" name="company_name" class="form-control" id="company_name" placeholder="Nombre" required />
+						</div>
+						<div class="col-sm-6">
+							<input type="text" name="company_tel" id="company_tel" placeholder="Télefono" required class="form-control" />	
+						</div>
+						<div class="col-sm-6">
+							<input type="text" name="company_address" class="form-control" id="company_address" placeholder="Dirección" required />
+						</div>
+						<div class="col-sm-6">
+							<select name="company_city_id" id="company_city_id" placeholder="Ciudad" required class="form-control">
+								{% for country in countries %}
+									{% for city in country.cities %}
+										<option value="{{ city.id }}">{{ country.name }}  - {{ city.name }}</option>
+									{% end %}
+								{% end %}
+							</select>
+						</div>
+					</div>
+
+					<div class="pwstrength_viewport_progress"></div>
+					<div class="text-center">
+						<button type="submit" name="go" class="btn btn-lg btn-primary">Registrarme ahora!</button>
+					</div>
+					<div>
+						<a href="/login">Ya tengo cuenta</a>
+					</div>
+				</form>
+
+				<div class="form-links">
+				  <a href="#">@andrestntx</a>
+				</div>
+			</section>  
+		</div>
+	      
+	  </div>
+	</div>
+
+	<!-- Jquery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   
+</body>
+</html>

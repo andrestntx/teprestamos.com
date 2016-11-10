@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Login</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- font-awesome icons -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="../static/css/login.css">
+</head>
+<body>
+	<div class="container">
+	  <div class="row" id="pwd-container">
+	    
+		<div class="col-md-offset-4 col-md-4">
+			<section class="login-form">
+				<form method="post" action="login" role="login">
+					{% module xsrf_form_html() %}
+					<h1>Teprestamos.com</h1>
+					<input type="email" name="email" placeholder="Email" required class="form-control input-lg" value="andres@gmail.com" />
+					<input type="password" class="form-control input-lg" name="password" id="password" placeholder="Password" required="" />
+					<div class="pwstrength_viewport_progress"></div>
+					<button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Iniciar sesión</button>
+					<div>
+						<a href="/register">Registrarme</a>
+					</div>
+				</form>
+
+				<div class="form-links">
+				  <a href="#">@andrestntx</a>
+				</div>
+			</section>  
+		</div>
+	      
+	  </div>
+	</div>
+
+	<!-- Jquery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   
+</body>
+</html>

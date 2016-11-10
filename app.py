@@ -2,6 +2,7 @@ import logging
 import tornado.escape
 import tornado.ioloop
 import tornado.web
+import os
 import os.path
 import uuid
 import bcrypt
@@ -126,9 +127,11 @@ def main():
         debug=options.debug,
     )
     ##metadata.create_all(engine)
-    app.listen(options.port)
-    tornado.ioloop.IOLoop.current().start()
-
+    
+    http_server = tornado.httpserver.HTTPServer(application)
+    port = int(os.environ.get("PORT", options.port))
+    http_server.listen(port)
+    tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == "__main__":
     main()

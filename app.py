@@ -112,7 +112,7 @@ class LogoutHandler(BaseHandler):
 
 def main():
     parse_command_line()
-    app = tornado.web.Application(
+    application = tornado.web.Application(
         [
             (r"/", MainHandler),
         	(r"/application", ApplicationHandler),
